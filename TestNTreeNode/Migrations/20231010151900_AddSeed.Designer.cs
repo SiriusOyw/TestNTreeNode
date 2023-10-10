@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestNTreeNode;
 
@@ -11,9 +12,11 @@ using TestNTreeNode;
 namespace TestNTreeNode.Migrations
 {
     [DbContext(typeof(TestNTreeNodeDbContext))]
-    partial class TestNTreeNodeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231010151900_AddSeed")]
+    partial class AddSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

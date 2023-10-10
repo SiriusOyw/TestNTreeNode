@@ -20,6 +20,27 @@ namespace TestNTreeNode
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //添加种子数据
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = Guid.NewGuid(),
+                    UserName = "Admin",
+                    Password = "123456",
+                    Sex = Sex.Other,
+                    Role = Role.Admin
+                }
+                );
+
+            modelBuilder.Entity<Tree>().HasData(
+                new Tree
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Root",
+                    ParentId = 0
+                }
+                );
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(TestNTreeNodeDbContext).Assembly);
         }
     }

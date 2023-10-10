@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Xml;
+using TestNTreeNode.Models;
 
 namespace TestNTreeNode
 {
@@ -21,16 +22,27 @@ namespace TestNTreeNode
         /// 获取实体上下文
         /// </summary>
         public static TestNTreeNodeDbContext DbContext => new TestNTreeNodeDbContext(DbContextOptions);
-        
+
         static void Main(string[] args)
         {
             // 初始化
             Configuration = InitConfiguration();
             DbContextOptions = InitDatabase(Configuration);
 
+            Console.WriteLine("请输入用户名");
+            var userName = Console.ReadLine();
+            Console.WriteLine("请输入密码");
+            var password = Console.ReadLine();
+            var user = Login(userName, password);
 
+            Console.WriteLine(JsonConvert.SerializeObject(user));
 
             Console.ReadKey();
+        }
+
+        public static User? Login(string UserName, string Password)
+        {
+            return DbContext.Users.FirstOrDefault(u => u.UserName == UserName && u.Password == Password);
         }
 
         /// <summary>

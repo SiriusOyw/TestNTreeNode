@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestNTreeNode;
 
@@ -11,9 +12,11 @@ using TestNTreeNode;
 namespace TestNTreeNode.Migrations
 {
     [DbContext(typeof(TestNTreeNodeDbContext))]
-    partial class TestNTreeNodeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231010150645_UpdateUserSex")]
+    partial class UpdateUserSex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,14 +41,6 @@ namespace TestNTreeNode.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Trees");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("dc13a8d8-47b7-4659-bc65-650f13e645e8"),
-                            Name = "Root",
-                            ParentId = 0
-                        });
                 });
 
             modelBuilder.Entity("TestNTreeNode.Models.User", b =>
@@ -71,16 +66,6 @@ namespace TestNTreeNode.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("1db22d70-7227-43d1-aa6b-2946ff143279"),
-                            Password = "123456",
-                            Role = 1,
-                            Sex = 3,
-                            UserName = "Admin"
-                        });
                 });
 
             modelBuilder.Entity("TestNTreeNode.Models.UserTreeMapper", b =>
