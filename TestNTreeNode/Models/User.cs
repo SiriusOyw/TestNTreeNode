@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestNTreeNode.Models
 {
-    public class User : BaseNTreeNode<Guid>
+    public class User : BaseEntity<Guid>
     {
         public string UserName { get; set; }
         public string Password { get; set; }
